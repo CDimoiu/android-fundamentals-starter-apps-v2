@@ -25,6 +25,7 @@ import org.junit.runners.JUnit4;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -53,6 +54,99 @@ public class CalculatorTest {
         assertThat(resultAdd, is(equalTo(2d)));
     }
 
+    @Test
+    public void addTwoNumbersNegative() {
+        double resultAdd = mCalculator.add(-1d, 2d);
+        assertThat(resultAdd, is(equalTo(1d)));
+    }
 
+    @Test
+    public void addTwoNumbersFloats() {
+        double resultAdd = mCalculator.add(1.111f, 1.111d);
+        assertThat(resultAdd, is(closeTo(2.222, 0.01)));
+    }
 
+    @Test
+    public void subTwoNumbers() {
+        double result = mCalculator.sub(10d, 5d);
+        assertThat(result, is(equalTo(5d)));
+    }
+
+    @Test
+    public void subWorksWithNegativeResults() {
+        double result = mCalculator.sub(10d, -5d);
+        assertThat(result, is(equalTo(15d)));
+    }
+
+    @Test
+    public void mulTwoNumbers() {
+        double result = mCalculator.mul(10d, 5d);
+        assertThat(result, is(equalTo(50d)));
+    }
+
+    @Test
+    public void mulTwoNumbersZero() {
+        double result = mCalculator.mul(10d, 0d);
+        assertThat(result, is(equalTo(0d)));
+    }
+
+    @Test
+    public void divTwoNumbers() {
+        double result = mCalculator.div(10d, 5d);
+        assertThat(result, is(equalTo(2d)));
+    }
+
+    @Test
+    public void divTwoNumbersZero() {
+        double result = mCalculator.div(10d, 0d);
+        assertThat(result, is(equalTo(Double.POSITIVE_INFINITY)));
+    }
+
+    @Test
+    public void divByZeroThrows() {
+        double result = mCalculator.div(0d, 0d);
+        assertThat(result, is(equalTo(Double.NaN)));
+    }
+
+    @Test
+    public void powPositives() {
+        double result = mCalculator.pow(2d, 3d);
+        assertThat(result, is(equalTo(8d)));
+    }
+
+    @Test
+    public void powFirstNegative() {
+        double result = mCalculator.pow(-2d, 3d);
+        assertThat(result, is(equalTo(-8d)));
+    }
+
+    @Test
+    public void powSecondNegative() {
+        double result = mCalculator.pow(2d, -3d);
+        assertThat(result, is(equalTo(0.125d)));
+    }
+
+    @Test
+    public void powFirstZero() {
+        double result = mCalculator.pow(0d, 3d);
+        assertThat(result, is(equalTo(0d)));
+    }
+
+    @Test
+    public void powSecondZero() {
+        double result = mCalculator.pow(2d, 0d);
+        assertThat(result, is(equalTo(1d)));
+    }
+
+    @Test
+    public void powZeroAndMinusOne() {
+        double result = mCalculator.pow(0d, -1d);
+        assertThat(result, is(equalTo(Double.POSITIVE_INFINITY)));
+    }
+
+    @Test
+    public void powZeroAndNegative() {
+        double result = mCalculator.pow(0d, -3d);
+        assertThat(result, is(equalTo(Double.POSITIVE_INFINITY)));
+    }
 }
