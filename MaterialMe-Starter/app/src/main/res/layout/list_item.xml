@@ -16,7 +16,7 @@
 			android:adjustViewBounds="true" />
 
 		<TextView
-			style="@style/TextAppearance.AppCompat.Headline"
+			style="@style/SportsTitle"
 			android:id="@+id/title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

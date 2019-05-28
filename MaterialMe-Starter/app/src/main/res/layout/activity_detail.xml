@@ -17,7 +17,7 @@
 			android:adjustViewBounds="true" />
 
 		<TextView
-			style="@style/TextAppearance.AppCompat.Headline"
+			style="@style/SportsDetailTitle"
 			android:id="@+id/detailTitle"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
 			android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
 		<TextView
-			style="@style/TextAppearance.AppCompat.Subhead"
+			style="@style/SportsDetailText"
 			android:id="@+id/detailNewsTitle"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
 			android:textColor="?android:textColorSecondary" />
 
 		<TextView
-			style="@style/TextAppearance.AppCompat.Subhead"
+			style="@style/SportsDetailText"
 			android:id="@+id/detailSubTitle"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"

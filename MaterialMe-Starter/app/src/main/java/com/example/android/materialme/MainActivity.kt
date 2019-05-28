@@ -2,6 +2,7 @@ package com.example.android.materialme
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -22,15 +23,23 @@ class MainActivity : AppCompatActivity() {
 
 		sportsData = ArrayList()
 		sportsAdapter = SportsAdapter(this, sportsData!!)
+		val gridColumns = resources.getInteger(R.integer.grid_column_count)
 		recyclerView.apply {
-			layoutManager = LinearLayoutManager(this@MainActivity)
+			layoutManager = GridLayoutManager(this@MainActivity, gridColumns)
 			adapter = sportsAdapter
 		}
 
 		initializeData()
 
-		val helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT or
-				ItemTouchHelper.DOWN or ItemTouchHelper.UP, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+		val swipeDirs: Int
+		swipeDirs = if (gridColumns > 1) {
+			0
+		} else {
+			ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+		}
+
+		val helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.LEFT or
+				ItemTouchHelper.RIGHT or ItemTouchHelper.DOWN or ItemTouchHelper.UP, swipeDirs) {
 			override fun onMove(recyclerView: RecyclerView,
 			                    viewHolder: RecyclerView.ViewHolder,
 			                    target: RecyclerView.ViewHolder): Boolean {
